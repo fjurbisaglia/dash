@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>TodayPrint × ВанЛав | Брендированные ленты</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FC;
+            color: #1A1A2E;
+            line-height: 1.4;
+            scroll-behavior: smooth;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+        section { padding: 60px 0; position: relative; }
+        .divider { width: 100%; height: 4px; background-color: #9B5FC6; margin: 0 auto; opacity: 0.4; border-radius: 2px; }
+        
+        h2 { font-size: 2.6rem; font-weight: 700; letter-spacing: -0.01em; color: #1A1A2E; margin-bottom: 24px; }
+        h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 12px; color: #1A1A2E; }
+        
+        .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+        .badge { display: inline-block; background: #F0E6F8; color: #9B5FC6; padding: 6px 16px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; margin-bottom: 24px; }
+        .btn-primary { background: #9B5FC6; color: white; border: none; padding: 14px 32px; border-radius: 48px; font-weight: 600; cursor: pointer; display: inline-block; text-decoration: none; transition: 0.2s; }
+        .btn-primary:hover { background: #7B3FA6; transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 1px solid #9B5FC6; color: #9B5FC6; padding: 14px 32px; border-radius: 48px; font-weight: 600; cursor: pointer; display: inline-block; text-decoration: none; transition: 0.2s; }
+        .btn-outline:hover { background: rgba(155,95,198,0.1); transform: translateY(-2px); }
+        
+        .terms-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px; }
+        .term-card { background: #FFFFFF; padding: 32px; border-radius: 32px; border: 1px solid #E8ECF2; text-align: center; width: 280px; transition: 0.2s; }
+        .term-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.05); }
+        .term-icon { width: 64px; height: 64px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; }
+        .term-icon img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        
+        .collage { display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(3, auto); gap: 20px; margin-top: 40px; }
+        .collage-item { background: #E8ECF2; border-radius: 28px; overflow: hidden; cursor: pointer; transition: all 0.3s ease; aspect-ratio: 1/1; }
+        .collage-item:hover { transform: scale(1.02); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15); }
+        .collage-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .photo-1 { grid-column: span 3; grid-row: span 3; }
+        .photo-2 { grid-column: span 1; grid-row: span 2; }
+        .photo-3 { grid-column: span 1; grid-row: span 1; }
+        .photo-4 { grid-column: span 1; grid-row: span 1; }
+        .photo-5 { grid-column: span 2; grid-row: span 1; }
+        
+        .success-block { background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FC 100%); border-radius: 48px; padding: 48px; box-shadow: 0 20px 35px -12px rgba(155,95,198,0.15); border: 1px solid #F0E6F8; }
+        .success-stats { font-size: 1.2rem; font-weight: 800; color: #7B3FA6; margin-bottom: 16px; letter-spacing: 1.5px; }
+        .ribbon-solution { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin: 32px 0 32px; }
+        .ribbon-badge { background: white; border-radius: 60px; padding: 12px 28px; border: 1px solid #E8ECF2; font-size: 1rem; font-weight: 600; }
+        .success-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
+        .success-photo { background: #E8ECF2; border-radius: 28px; aspect-ratio: 1/1; overflow: hidden; cursor: pointer; transition: 0.3s; }
+        .success-photo:hover { transform: scale(1.02); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15); }
+        .success-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        .experience-block { background: linear-gradient(135deg, #F0E6F8 0%, #FFFFFF 100%); border-radius: 48px; padding: 48px; border: 1px solid #9B5FC6; }
+        .exp-number { font-size: 3rem; font-weight: 800; color: #9B5FC6; line-height: 1; }
+        .team-text-large { font-size: 1.7rem; line-height: 1.5; color: #1A1A2E; }
+        .team-title { font-size: 2rem; font-weight: 700; color: #9B5FC6; margin-bottom: 20px; }
+        
+        .clients-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px; }
+        .client-card { text-align: center; background: #FFFFFF; padding: 24px 16px; border-radius: 28px; border: 1px solid #E8ECF2; transition: 0.2s; }
+        .client-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.05); }
+        .client-logo { background: #F4F6FA; border-radius: 20px; padding: 20px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; min-height: 100px; }
+        .client-logo img { max-height: 60px; max-width: 120px; width: auto; height: auto; display: block; margin: 0 auto; }
+        .client-name { font-weight: 700; margin-bottom: 8px; }
+        .client-desc { font-size: 0.75rem; color: #5A6270; }
+        
+        .qr-grid { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; margin: 20px 0 40px; }
+        .qr-card { background: #FFFFFF; border-radius: 40px; padding: 32px; text-align: center; border: 1px solid #E8ECF2; width: 300px; transition: 0.2s; }
+        .qr-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.05); }
+        .qr-code-img { width: 200px; height: 200px; margin: 0 auto 20px; display: block; }
+        .qr-code-img img { width: 100%; height: 100%; object-fit: contain; }
+        
+        footer { background: #FFFFFF; border-top: 1px solid #E8ECF2; padding: 48px 0 32px; margin-top: 20px; text-align: center; }
+        .legal-info { font-size: 0.75rem; color: #5A6270; margin-top: 24px; padding-top: 24px; border-top: 1px solid #E8ECF2; }
+        
+        @media (max-width: 1024px) {
+            .container { padding: 0 24px; }
+            h2 { font-size: 2rem; }
+            .clients-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .term-card { width: 240px; padding: 24px; }
+            .team-text-large { font-size: 1.3rem; }
+            .team-title { font-size: 1.6rem; }
+            .qr-card { width: 260px; padding: 24px; }
+            .qr-code-img { width: 160px; height: 160px; }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 16px; }
+            section { padding: 40px 0; }
+            h2 { font-size: 1.6rem; }
+            .grid-2col { grid-template-columns: 1fr; gap: 32px; }
+            .collage { grid-template-columns: 1fr; gap: 16px; }
+            .photo-1, .photo-2, .photo-3, .photo-4, .photo-5 { grid-column: auto; grid-row: auto; aspect-ratio: 1/1; }
+            .success-block { padding: 24px; }
+            .ribbon-badge { padding: 8px 16px; font-size: 0.85rem; }
+            .success-photos { grid-template-columns: 1fr; gap: 16px; }
+            .experience-block { padding: 24px; }
+            .exp-number { font-size: 2rem; }
+            .team-text-large { font-size: 1rem; }
+            .team-title { font-size: 1.3rem; }
+            .terms-grid { gap: 16px; }
+            .term-card { width: 100%; padding: 20px; }
+            .term-icon { width: 48px; height: 48px; }
+            .clients-grid { grid-template-columns: 1fr; gap: 16px; }
+            .client-logo { min-height: 80px; padding: 16px; }
+            .client-logo img { max-height: 50px; }
+            .qr-grid { gap: 24px; }
+            .qr-card { width: 100%; max-width: 260px; padding: 20px; }
+            .qr-code-img { width: 140px; height: 140px; }
+            .divider { height: 3px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ======================== ШАПКА ======================== -->
+<div class="container" style="padding-top: 50px; padding-bottom: 20px;">
+    <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px;">
+        <img src="https://i.ibb.co/pvphC7mg/todayprint.png" alt="TodayPrint" style="height: 60px; width: auto;">
+        <span style="font-size: 2rem; color: #9B5FC6; font-weight: 400;">+</span>
+        <img src="https://i.ibb.co/Y4Tbcp5x/image.png" alt="ВанЛав" style="height: 80px; width: auto;">
+        <span style="font-size: 2rem; color: #9B5FC6; font-weight: 400;">=</span>
+        <span style="font-size: 2.8rem; color: #9B5FC6; font-weight: 300;">∞</span>
+    </div>
+</div>
+
+<!-- ======================== БЛОК 1: УСПЕШНЫЙ КЕЙС ======================== -->
+<section>
+    <div class="container">
+        <div class="success-block" data-aos="fade-up">
+            <div class="success-stats">УСПЕШНЫЙ КЕЙС</div>
+            <h2 style="margin-bottom: 16px;">Более года сотрудничаем<br>с 4 филиалами ВанЛав в Казани</h2>
+            <p style="font-size: 1.3rem; font-weight: 600; color: #9B5FC6; margin-bottom: 20px;">15 000+ метров ленты отпечатано</p>
+            <p style="color: #5A6270; margin-bottom: 0px; font-size: 1rem;">У нас уже есть готовое, отлаженное решение для упаковки ВанЛав:</p>
+            <div class="ribbon-solution">
+                <span class="ribbon-badge">⚪ Белая лента + фиолетовое нанесение</span>
+                <span class="ribbon-badge">🟣 Фиолетовая лента + белое нанесение</span>
+            </div>
+            <div class="success-photos">
+                <div class="success-photo" data-gallery="success" data-index="0">
+                    <img src="https://i.ibb.co/4ZHbmQCB/2.jpg" alt="Белая лента + фиолетовое нанесение">
+                </div>
+                <div class="success-photo" data-gallery="success" data-index="1">
+                    <img src="https://i.ibb.co/DP6PszVK/photo-2026-04-03-11-42-46.jpg" alt="Фиолетовая лента + белое нанесение">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- ======================== БЛОК 2: НАШ ОПЫТ ======================== -->
+<section>
+    <div class="container">
+        <div class="experience-block" data-aos="fade-up">
+            <div class="grid-2col">
+                <div>
+                    <div class="exp-number">10+ лет</div>
+                    <h3 style="margin-top: 8px; margin-bottom: 24px;">в полиграфии</h3>
+                    <div class="exp-number" style="font-size: 2rem;">1 500 000+</div>
+                    <p style="margin-bottom: 16px;">погонных метров ленты отпечатано</p>
+                    <div class="exp-number" style="font-size: 2rem;">1 000+</div>
+                    <p>довольных заказчиков по всей стране</p>
+                </div>
+                <div>
+                    <div class="team-title">Амбициозная молодая команда</div>
+                    <div class="team-text-large">Широкий бекграунд за плечами, свежий взгляд и готовность решать нестандартные задачи.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- ======================== БЛОК 3: КОЛЛАЖ ======================== -->
+<section>
+    <div class="container">
+        <h2 data-aos="fade-up">Примеры наших работ</h2>
+        <div class="collage" data-aos="fade-up">
+            <div class="collage-item photo-1" data-gallery="portfolio" data-index="0"><img src="https://i.ibb.co/Q7xQ2R2s/1-9.png" alt="Портфолио 1"></div>
+            <div class="collage-item photo-2" data-gallery="portfolio" data-index="1"><img src="https://i.ibb.co/Q3qvGBdf/2-9.png" alt="Портфолио 2"></div>
+            <div class="collage-item photo-3" data-gallery="portfolio" data-index="2"><img src="https://i.ibb.co/8DYZ4GQ1/3-6.png" alt="Портфолио 3"></div>
+            <div class="collage-item photo-4" data-gallery="portfolio" data-index="3"><img src="https://i.ibb.co/Z6gNdX11/4-6.png" alt="Портфолио 4"></div>
+            <div class="collage-item photo-5" data-gallery="portfolio" data-index="4"><img src="https://i.ibb.co/JjKrCVzw/5-6.png" alt="Портфолио 5"></div>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- ======================== БЛОК 4: НАМ ДОВЕРЯЮТ ======================== -->
+<section>
+    <div class="container">
+        <h2 data-aos="fade-up">Нам доверяют свою упаковку</h2>
+        <div class="clients-grid" data-aos="fade-up">
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/JRpy4Mgt/image.png" alt="Медовик"></div><div class="client-name">Медовик</div><div class="client-desc">сеть ресторанов, г. Казань — 4 филиала</div></div>
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/FbytHXtW/ECLAIR.png" alt="Eclair"></div><div class="client-name">Eclair</div><div class="client-desc">сеть ресторанов, г. Казань — 4 филиала</div></div>
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/K1fN7hW/image.png" alt="Ватрушка"></div><div class="client-name">Ватрушка</div><div class="client-desc">сеть ресторанов, г. Челябинск — 4 филиала</div></div>
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/Wv67C4jj/image.png" alt="PionFlo"></div><div class="client-name">PionFlo</div><div class="client-desc">сеть цветочных салонов, г. Казань/Ижевск — 8 филиалов</div></div>
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/GQH15tp9/ppcake.png" alt="PP Cake"></div><div class="client-name">PP Cake</div><div class="client-desc">ресторан правильного питания, г. Москва</div></div>
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/dwFNRKP7/image.png" alt="НБС"></div><div class="client-name">НБС</div><div class="client-desc">Национальный Банк Сбережений, г. Иваново</div></div>
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/7t4Xp61v/image.png" alt="Зеленая гречка"></div><div class="client-name">Зеленая гречка</div><div class="client-desc">сеть ресторанов, г. Казань — 2 филиала</div></div>
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/RTfnyQm5/image.png" alt="Begin Cafe"></div><div class="client-name">BeginCafe</div><div class="client-desc">сеть ресторанов, г. Казань — 3 филиала</div></div>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- ======================== БЛОК 5: УСЛОВИЯ ПАРТНЁРСТВА ======================== -->
+<section>
+    <div class="container">
+        <h2 data-aos="fade-up">Прозрачное и выгодное партнёрство</h2>
+        <div class="terms-grid" data-aos="fade-up">
+            <div class="term-card"><div class="term-icon"><img src="https://i.ibb.co/JjscNfxw/image.png" alt="Стоимость"></div><h3>Стоимость ленты</h3><p>от 10 до 20 ₽/метр, в зависимости от тиража.</p></div>
+            <div class="term-card"><div class="term-icon"><img src="https://i.ibb.co/HDFFBWdx/image.png" alt="Доставка"></div><h3>Доставка</h3><p>Первая доставка до филиалов — за наш счёт. Далее — по тарифу СДЭК (не дороже 500 ₽).</p></div>
+            <div class="term-card"><div class="term-icon"><img src="https://i.ibb.co/jZbsjGXw/image.png" alt="Скорость"></div><h3>Скорость</h3><p>Срок изготовления — от 1 календарного дня.</p></div>
+            <div class="term-card"><div class="term-icon"><img src="https://i.ibb.co/5htpCKMq/image.png" alt="Поддержка"></div><h3>Поддержка 24/7</h3><p>Информация о ходе заказа доступна в любое время.</p></div>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- ======================== БЛОК 6: СЛОГАН ======================== -->
+<section>
+    <div class="container" style="text-align: center;">
+        <div style="font-size: 3rem; color: #9B5FC6; margin-bottom: 20px;">💜</div>
+        <h2 style="font-size: 3.5rem; margin-bottom: 10px;">Всё будет фиолетово<br>и элегантно</h2>
+        <div style="font-size: 1.8rem; font-weight: 700; color: #9B5FC6; margin-top: 10px;">Начнём?</div>
+    </div>
+</section>
+
+<!-- ======================== БЛОК 7: КОНТАКТЫ ======================== -->
+<section id="contact">
+    <div class="container" style="text-align: center;">
+        <div class="qr-grid" data-aos="fade-up">
+            <div class="qr-card">
+                <a href="https://t.me/today_print" target="_blank" rel="noopener noreferrer" class="qr-code-img">
+                    <img src="https://i.ibb.co/sdnyC5Lm/qr.png" alt="QR-код Telegram">
+                </a>
+                <p style="font-weight: 600; margin-bottom: 8px;">Telegram-канал</p>
+                <a href="https://t.me/today_print" target="_blank" style="color: #9B5FC6; text-decoration: none;">@today_print</a>
+            </div>
+            <div class="qr-card">
+                <a href="https://max.ru/u/f9LHodD0cOLYJ6WUEamSep5265dhmCnzgf6OiFZzylhp-3bd9MML-H3uw7Y" target="_blank" rel="noopener noreferrer" class="qr-code-img">
+                    <img src="https://i.ibb.co/Y4hFc8fG/image.png" alt="QR-код Max">
+                </a>
+                <p style="font-weight: 600; margin-bottom: 8px;">Max</p>
+                <a href="https://max.ru/u/f9LHodD0cOLYJ6WUEamSep5265dhmCnzgf6OiFZzylhp-3bd9MML-H3uw7Y" target="_blank" style="color: #9B5FC6; text-decoration: none; font-size: 0.75rem;">Ссылка на профиль</a>
+            </div>
+        </div>
+        <div>
+            <p style="color: #5A6270;">Или напишите нам на почту: <a href="mailto:t0day.print@yandex.ru" style="color: #9B5FC6;">t0day.print@yandex.ru</a></p>
+            <p style="color: #5A6270; margin-top: 8px;">Телефон: <a href="tel:+79061151877" style="color: #9B5FC6;">+7 906 115 1877</a></p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>© 2026 — TodayPrint. Готовы стать частью фиолетового мира ВанЛав</p>
+        <p style="font-size: 0.7rem; margin-top: 8px;">Данное предложение не является офертой</p>
+        <div class="legal-info">
+            <p>ИП Исхаков Олег Сатурнович</p>
+            <p>ИНН 163301075817 | ОГРНИП 322169000164841</p>
+            <p>Адрес: г. Казань, ул. Товарищеская, д. 27, офис А31</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: true, offset: 60 });
+
+    // ЛАЙТБОКС ГАЛЕРЕИ
+    function initLightbox(galleryName, items) {
+        let currentIndex = 0;
+        const lightbox = document.getElementById(`lightbox-${galleryName}`);
+        if (!lightbox) return;
+        const imgElement = lightbox.querySelector('.lightbox-img');
+        const prevBtn = lightbox.querySelector('.lightbox-prev');
+        const nextBtn = lightbox.querySelector('.lightbox-next');
+        const closeBtn = lightbox.querySelector('.lightbox-close');
+
+        function updateImage() {
+            const imgData = items[currentIndex];
+            if (imgData && imgData.src) {
+                imgElement.src = imgData.src;
+                imgElement.alt = imgData.alt || '';
+                imgElement.style.display = 'block';
+            }
+        }
+
+        function openLightbox(index) {
+            if (index < 0 || index >= items.length) return;
+            currentIndex = index;
+            updateImage();
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() { lightbox.classList.remove('active'); }
+        function nextImage() { if (items.length) { currentIndex = (currentIndex + 1) % items.length; updateImage(); } }
+        function prevImage() { if (items.length) { currentIndex = (currentIndex - 1 + items.length) % items.length; updateImage(); } }
+
+        items.forEach((_, idx) => {
+            const selector = `[data-gallery="${galleryName}"][data-index="${idx}"]`;
+            const el = document.querySelector(selector);
+            if (el) {
+                const newEl = el.cloneNode(true);
+                el.parentNode.replaceChild(newEl, el);
+                newEl.addEventListener('click', (e) => { e.stopPropagation(); openLightbox(idx); });
+            }
+        });
+
+        if (prevBtn) { const newPrev = prevBtn.cloneNode(true); prevBtn.parentNode.replaceChild(newPrev, prevBtn); newPrev.addEventListener('click', prevImage); }
+        if (nextBtn) { const newNext = nextBtn.cloneNode(true); nextBtn.parentNode.replaceChild(newNext, nextBtn); newNext.addEventListener('click', nextImage); }
+        if (closeBtn) { const newClose = closeBtn.cloneNode(true); closeBtn.parentNode.replaceChild(newClose, closeBtn); newClose.addEventListener('click', closeLightbox); }
+        if (lightbox) { const newLightbox = lightbox.cloneNode(true); lightbox.parentNode.replaceChild(newLightbox, lightbox); newLightbox.addEventListener('click', (e) => { if (e.target === newLightbox) closeLightbox(); }); }
+        
+        document.addEventListener('keydown', (e) => {
+            if (!document.querySelector('.lightbox.active')) return;
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'Escape') closeLightbox();
+        });
+    }
+
+    // ГАЛЕРЕИ
+    const successItems = [
+        { src: 'https://i.ibb.co/4ZHbmQCB/2.jpg', alt: 'Белая лента + фиолетовое нанесение' },
+        { src: 'https://i.ibb.co/DP6PszVK/photo-2026-04-03-11-42-46.jpg', alt: 'Фиолетовая лента + белое нанесение' }
+    ];
+    const portfolioItems = [
+        { src: 'https://i.ibb.co/Q7xQ2R2s/1-9.png', alt: 'Портфолио 1' },
+        { src: 'https://i.ibb.co/Q3qvGBdf/2-9.png', alt: 'Портфолио 2' },
+        { src: 'https://i.ibb.co/8DYZ4GQ1/3-6.png', alt: 'Портфолио 3' },
+        { src: 'https://i.ibb.co/Z6gNdX11/4-6.png', alt: 'Портфолио 4' },
+        { src: 'https://i.ibb.co/JjKrCVzw/5-6.png', alt: 'Портфолио 5' }
+    ];
+
+    function addLightbox(galleryName) {
+        if (document.getElementById(`lightbox-${galleryName}`)) return;
+        const div = document.createElement('div');
+        div.className = 'lightbox';
+        div.id = `lightbox-${galleryName}`;
+        div.innerHTML = `<div class="lightbox-content"><button class="lightbox-close">✕</button><button class="lightbox-prev">‹</button><button class="lightbox-next">›</button><img class="lightbox-img" src="" alt=""></div>`;
+        document.body.appendChild(div);
+    }
+    
+    addLightbox('success');
+    addLightbox('portfolio');
+    initLightbox('success', successItems);
+    initLightbox('portfolio', portfolioItems);
+</script>
+</body>
+</html>
