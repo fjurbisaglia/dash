@@ -1,10 +1,1058 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>TodayPrint × ВанЛав | Брендированные ленты</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FC;
+            color: #1A1A2E;
+            line-height: 1.4;
+            scroll-behavior: smooth;
+            position: relative;
+        }
+
+        /* ========== ФИОЛЕТОВЫЙ ПАТТЕРН ========== */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(155, 95, 198, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 90% 45%, rgba(155, 95, 198, 0.12) 0%, transparent 35%),
+                radial-gradient(circle at 40% 80%, rgba(155, 95, 198, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 70% 15%, rgba(155, 95, 198, 0.08) 0%, transparent 25%),
+                repeating-radial-gradient(circle at 50% 50%, rgba(155, 95, 198, 0.05) 0px, rgba(155, 95, 198, 0.05) 1px, transparent 1px, transparent 12px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .divider {
+            width: 100%;
+            height: 4px;
+            background-color: #9B5FC6;
+            margin: 0 auto;
+            opacity: 0.4;
+            border-radius: 2px;
+        }
+
+        h2 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: #9B5FC6;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1A1A2E;
+            text-align: center;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        /* ПРИВЕТСТВИЕ */
+        .hero-block {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 48px;
+            padding: 60px 48px;
+            text-align: center;
+            border: 1px solid #E8ECF2;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-block::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://i.ibb.co/sJHYrV47/image.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        .hero-block > * {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-title {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #9B5FC6, #7B3FA6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 24px;
+        }
+        .hero-text {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            color: #2D2A3A;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .hero-text strong {
+            color: #9B5FC6;
+            font-weight: 700;
+        }
+
+        /* УСЛОВИЯ ПАРТНЁРСТВА */
+        .terms-grid-2rows {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .term-card-large {
+            background: #FFFFFF;
+            padding: 36px 24px;
+            border-radius: 32px;
+            border: 1px solid #E8ECF2;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+        .term-card-large:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(155,95,198,0.15);
+            border-color: #9B5FC6;
+        }
+        .term-icon-large {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .term-icon-large img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.2s;
+        }
+        .term-card-large:hover .term-icon-large img {
+            transform: scale(1.05);
+        }
+        .term-card-large h3 {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+            color: #1A1A2E;
+        }
+        .term-card-large p {
+            font-size: 1rem;
+            color: #5A6270;
+        }
+
+        /* ДОПОЛНИТЕЛЬНАЯ ПРОДУКЦИЯ */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .product-card {
+            background: #FFFFFF;
+            border-radius: 28px;
+            border: 1px solid #E8ECF2;
+            overflow: hidden;
+            transition: 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(155,95,198,0.15);
+            border-color: #9B5FC6;
+        }
+        .product-image {
+            background: #F4F6FA;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .product-image img {
+            max-width: 85%;
+            max-height: 85%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        .product-info {
+            padding: 24px;
+        }
+        .product-info p {
+            color: #5A6270;
+            font-size: 0.9rem;
+        }
+
+        /* УСПЕШНЫЙ КЕЙС (ТЕПЕРЬ 4 ФОТО) */
+        .success-block {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FC 100%);
+            border-radius: 48px;
+            padding: 48px;
+            box-shadow: 0 20px 35px -12px rgba(155,95,198,0.15);
+            border: 1px solid #F0E6F8;
+        }
+        .ribbon-solution {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin: 32px 0;
+        }
+        .ribbon-badge {
+            background: white;
+            border-radius: 60px;
+            padding: 12px 28px;
+            border: 1px solid #E8ECF2;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .ribbon-badge:hover {
+            border-color: #9B5FC6;
+            transform: translateY(-2px);
+        }
+        .success-photos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 20px;
+        }
+        .success-photo {
+            background: #E8ECF2;
+            border-radius: 28px;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .success-photo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15);
+        }
+        .success-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+        .success-photo:hover img {
+            transform: scale(1.03);
+        }
+
+        /* ОПЫТ КОМАНДЫ */
+        .experience-block {
+            background: linear-gradient(135deg, #F0E6F8 0%, #FFFFFF 100%);
+            border-radius: 48px;
+            padding: 48px;
+            border: 1px solid #9B5FC6;
+        }
+        .exp-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #9B5FC6;
+            line-height: 1;
+            text-align: center;
+        }
+        .team-text-large {
+            font-size: 1.5rem;
+            line-height: 1.4;
+            text-align: center;
+        }
+        .team-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #9B5FC6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* КЛИЕНТЫ */
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .client-card {
+            text-align: center;
+            background: #FFFFFF;
+            padding: 24px 16px;
+            border-radius: 28px;
+            border: 1px solid #E8ECF2;
+            transition: 0.3s;
+        }
+        .client-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(155,95,198,0.15);
+            border-color: #9B5FC6;
+        }
+        .client-logo {
+            background: #F4F6FA;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .client-logo img {
+            max-height: 60px;
+            max-width: 120px;
+            width: auto;
+            height: auto;
+            transition: transform 0.2s;
+        }
+        .client-card:hover .client-logo img {
+            transform: scale(1.05);
+        }
+        .client-name {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .client-desc {
+            font-size: 0.75rem;
+            color: #5A6270;
+        }
+
+        /* СЛОГАН, ПРИЗЫВ И АКЦИЯ */
+        .slogan-block {
+            text-align: center;
+            padding: 40px 0 20px 0;
+        }
+        .slogan-heart {
+            font-size: 3rem;
+            color: #9B5FC6;
+            margin-bottom: 20px;
+        }
+        .slogan-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #1A1A2E;
+            margin-bottom: 16px;
+        }
+        .slogan-title span {
+            color: #9B5FC6;
+        }
+        .slogan-start {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #9B5FC6;
+            margin-top: 16px;
+        }
+        .promo-block {
+            background: linear-gradient(135deg, #9B5FC6 0%, #6B2E9E 100%);
+            border-radius: 60px;
+            padding: 28px 48px;
+            text-align: center;
+            max-width: 850px;
+            margin: 30px auto 0;
+            box-shadow: 0 15px 30px -8px rgba(107, 46, 158, 0.4);
+            transition: transform 0.2s;
+        }
+        .promo-block:hover {
+            transform: scale(1.02);
+        }
+        .promo-text {
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .promo-date {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* QR-КОДЫ */
+        .qr-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin: 20px 0 40px;
+        }
+        .qr-card {
+            background: #FFFFFF;
+            border-radius: 40px;
+            padding: 32px;
+            text-align: center;
+            border: 1px solid #E8ECF2;
+            width: 300px;
+            transition: 0.3s;
+        }
+        .qr-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(155,95,198,0.15);
+            border-color: #9B5FC6;
+        }
+        .qr-code-img {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        .qr-code-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.2s;
+        }
+        .qr-card:hover .qr-code-img img {
+            transform: scale(1.02);
+        }
+
+        footer {
+            background: #FFFFFF;
+            border-top: 1px solid #E8ECF2;
+            padding: 48px 0 32px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .legal-info {
+            font-size: 0.75rem;
+            color: #5A6270;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #E8ECF2;
+        }
+
+        /* ЛАЙТБОКС */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-content {
+            position: relative;
+            max-width: 85%;
+            max-height: 85%;
+        }
+        .lightbox-img {
+            width: auto;
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 20px;
+            object-fit: contain;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: 0.2s;
+        }
+        .lightbox-close:hover {
+            transform: scale(1.1);
+            color: #9B5FC6;
+        }
+        .lightbox-prev, .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background: #9B5FC6;
+            transform: translateY(-50%) scale(1.05);
+        }
+        .lightbox-prev {
+            left: -70px;
+        }
+        .lightbox-next {
+            right: -70px;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 24px;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .hero-text {
+                font-size: 1.1rem;
+            }
+            .team-text-large {
+                font-size: 1.2rem;
+            }
+            .team-title {
+                font-size: 1.6rem;
+            }
+            .slogan-title {
+                font-size: 2.5rem;
+            }
+            .lightbox-prev {
+                left: 10px;
+            }
+            .lightbox-next {
+                right: 10px;
+            }
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+            }
+            .promo-text {
+                font-size: 1.3rem;
+            }
+            .promo-date {
+                font-size: 1rem;
+            }
+            .promo-block {
+                padding: 20px 32px;
+                max-width: 700px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+            section {
+                padding: 40px 0;
+            }
+            h2 {
+                font-size: 1.6rem;
+                margin-bottom: 16px;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .hero-block {
+                padding: 32px 20px;
+            }
+            .hero-title {
+                font-size: 1.4rem;
+            }
+            .hero-text {
+                font-size: 0.95rem;
+            }
+            .hero-text br {
+                display: none;
+            }
+            .grid-2col {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .terms-grid-2rows {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .clients-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .success-photos {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .term-card-large {
+                padding: 24px 20px;
+            }
+            .term-icon-large {
+                width: 60px;
+                height: 60px;
+            }
+            .term-card-large h3 {
+                font-size: 1.3rem;
+            }
+            .term-card-large p {
+                font-size: 0.9rem;
+            }
+            .product-image {
+                height: 180px;
+            }
+            .product-info {
+                padding: 16px;
+            }
+            .success-block {
+                padding: 24px;
+            }
+            .ribbon-badge {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+            .experience-block {
+                padding: 24px;
+            }
+            .exp-number {
+                font-size: 2rem;
+            }
+            .team-text-large {
+                font-size: 1rem;
+            }
+            .team-title {
+                font-size: 1.3rem;
+                margin-bottom: 12px;
+            }
+            .client-logo {
+                min-height: 80px;
+                padding: 16px;
+            }
+            .client-logo img {
+                max-height: 50px;
+            }
+            .slogan-block {
+                padding: 20px 0;
+            }
+            .slogan-heart {
+                font-size: 2rem;
+                margin-bottom: 12px;
+            }
+            .slogan-title {
+                font-size: 1.6rem;
+            }
+            .slogan-start {
+                font-size: 1.3rem;
+            }
+            .promo-block {
+                padding: 16px 24px;
+                margin-top: 20px;
+            }
+            .promo-text {
+                font-size: 1.1rem;
+            }
+            .promo-date {
+                font-size: 0.85rem;
+            }
+            .qr-grid {
+                gap: 24px;
+                margin: 10px 0 30px;
+            }
+            .qr-card {
+                width: 100%;
+                max-width: 260px;
+                padding: 20px;
+                margin: 0 auto;
+            }
+            .qr-code-img {
+                width: 140px;
+                height: 140px;
+            }
+            .divider {
+                height: 3px;
+            }
+            footer {
+                padding: 32px 0 24px;
+            }
+            .legal-info {
+                font-size: 0.7rem;
+                margin-top: 16px;
+                padding-top: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 12px;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            .hero-block {
+                padding: 24px 16px;
+            }
+            .hero-title {
+                font-size: 1.2rem;
+            }
+            .ribbon-badge {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
+            .slogan-title {
+                font-size: 1.4rem;
+            }
+            .qr-card {
+                max-width: 240px;
+                padding: 16px;
+            }
+            .qr-code-img {
+                width: 120px;
+                height: 120px;
+            }
+            .promo-text {
+                font-size: 1rem;
+            }
+            .promo-date {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
 </head>
 <body>
-page
+
+<!-- ШАПКА -->
+<div class="container" style="padding-top: 50px; padding-bottom: 20px;">
+    <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px;">
+        <img src="https://i.ibb.co/pvphC7mg/todayprint.png" alt="TodayPrint" style="height: 60px; width: auto;">
+        <span style="font-size: 2rem; color: #9B5FC6; font-weight: 400;">+</span>
+        <img src="https://i.ibb.co/Y4Tbcp5x/image.png" alt="ВанЛав" style="height: 80px; width: auto;">
+        <span style="font-size: 2rem; color: #9B5FC6; font-weight: 400;">=</span>
+        <span style="font-size: 2.8rem; color: #9B5FC6; font-weight: 300;">∞</span>
+    </div>
+</div>
+
+<!-- 1. ПРИВЕТСТВИЕ -->
+<section style="padding-top: 20px;">
+    <div class="container">
+        <div class="hero-block" data-aos="fade-up">
+            <div class="hero-title">Дорогие партнеры и участники проекта "ВанЛав"!</div>
+            <div class="hero-text">
+                <p>Наша команда <strong>уже больше 10 лет</strong> создаёт упаковку, которая работает на бренд.</p>
+                <p style="margin-top: 16px;">Мы хотим предложить вам <strong>брендированные ленты</strong> — простой и элегантный инструмент, который превращает любую коробку в подарок.</p>
+                <p style="margin-top: 16px;">Он нужен, чтобы каждый ваш десерт <strong>запоминался, фотографировался</strong> и вызывал приятные эмоции ещё до того, как его откроют.</p>
+            </div>
+            <div style="width: 100px; height: 3px; background: linear-gradient(90deg, #9B5FC6, #FDA54F, #2777BA); margin: 32px auto 0; border-radius: 3px;"></div>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- 2. УСПЕШНЫЙ КЕЙС (ТЕПЕРЬ С 4 ФОТОГРАФИЯМИ) -->
+<section>
+    <div class="container">
+        <div class="success-block" data-aos="fade-up">
+            <h2 style="margin-bottom: 16px;">У нас уже есть <span style="color: #9B5FC6;">готовое решение</span><br>для упаковки ВанЛав</h2>
+            <p style="font-size: 1.2rem; font-weight: 500; color: #9B5FC6; margin-bottom: 16px; text-align: center;">Более года успешно сотрудничаем с 4 филиалами ВанЛав в Казани</p>
+            <p style="font-size: 1rem; color: #5A6270; margin-bottom: 24px; text-align: center;">15 000+ метров брендированной ленты отпечатано за этот период</p>
+            <div class="ribbon-solution">
+                <span class="ribbon-badge">⚪ Белая лента + фиолетовое нанесение</span>
+                <span class="ribbon-badge">🟣 Фиолетовая лента + белое нанесение</span>
+            </div>
+            <!-- 4 ФОТО В СЕТКЕ 2x2 -->
+            <div class="success-photos">
+                <div class="success-photo" data-gallery="success" data-index="0">
+                    <img src="https://i.ibb.co/4ZHbmQCB/2.jpg" alt="Белая лента + фиолетовое нанесение">
+                </div>
+                <div class="success-photo" data-gallery="success" data-index="1">
+                    <img src="https://i.ibb.co/mFJ1FxGJ/9.jpg" alt="Фиолетовая лента + белое нанесение">
+                </div>
+                <div class="success-photo" data-gallery="success" data-index="2">
+                    <img src="https://i.ibb.co/NGrM2W7/10.jpg" alt="Дополнительное фото 1">
+                </div>
+                <div class="success-photo" data-gallery="success" data-index="3">
+                    <img src="https://i.ibb.co/XfwJ3XjY/11.jpg" alt="Дополнительное фото 2">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- 3. АМБИЦИОЗНАЯ КОМАНДА -->
+<section>
+    <div class="container">
+        <div class="experience-block" data-aos="fade-up">
+            <div class="grid-2col">
+                <div>
+                    <div class="exp-number">10+ лет</div>
+                    <h3 style="margin-top: 8px; margin-bottom: 24px;">в полиграфии</h3>
+                    <div class="exp-number" style="font-size: 2rem;">1 500 000+</div>
+                    <p style="margin-bottom: 16px; text-align: center;">погонных метров ленты отпечатано</p>
+                    <div class="exp-number" style="font-size: 2rem;">1 000+</div>
+                    <p style="text-align: center;">довольных заказчиков по всей стране</p>
+                </div>
+                <div>
+                    <div class="team-title">Амбициозная молодая команда</div>
+                    <div class="team-text-large">Широкий бекграунд за плечами, свежий взгляд и готовность решать нестандартные задачи.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- 4. ДОПОЛНИТЕЛЬНАЯ ПРОДУКЦИЯ -->
+<section>
+    <div class="container">
+        <h2 data-aos="fade-up">Дополнительная продукция</h2>
+        <p style="color: #9B5FC6; margin-bottom: 20px; text-align: center; font-weight: 600; font-size: 1.1rem;">Мы также производим наклейки для вашего бренда</p>
+        <div class="products-grid" data-aos="fade-up">
+            <div class="product-card" data-gallery="products" data-index="0">
+                <div class="product-image"><img src="https://i.ibb.co/CpYqnHZc/3.jpg" alt="3D-стикеры"></div>
+                <div class="product-info"><h3>3D-стикеры</h3><p>Объёмные, яркие, привлекающие внимание</p></div>
+            </div>
+            <div class="product-card" data-gallery="products" data-index="1">
+                <div class="product-image"><img src="https://i.ibb.co/8nkh98qk/image.jpg" alt="Прозрачные наклейки"></div>
+                <div class="product-info"><h3>Прозрачные с нанесением</h3><p>Элегантно, незаметно, стильно</p></div>
+            </div>
+            <div class="product-card" data-gallery="products" data-index="2">
+                <div class="product-image"><img src="https://i.ibb.co/mVvr1d75/image.jpg" alt="Цветные наклейки"></div>
+                <div class="product-info"><h3>Цветные на фотобумаге</h3><p>Насыщенные цвета, отличная детализация</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- 5. УСЛОВИЯ СОТРУДНИЧЕСТВА -->
+<section>
+    <div class="container">
+        <h2 data-aos="fade-up">Прозрачное и выгодное партнёрство</h2>
+        <div class="terms-grid-2rows" data-aos="fade-up">
+            <div class="term-card-large">
+                <div class="term-icon-large"><img src="https://i.ibb.co/JjscNfxw/image.png" alt="Стоимость"></div>
+                <h3>Стоимость ленты</h3>
+                <p>от 10 до 20 ₽/метр, в зависимости от тиража.</p>
+            </div>
+            <div class="term-card-large">
+                <div class="term-icon-large"><img src="https://i.ibb.co/HDFFBWdx/image.png" alt="Доставка"></div>
+                <h3>Доставка</h3>
+                <p>Первая доставка до филиалов — за наш счёт. Далее — по тарифу СДЭК (не дороже 500 ₽).</p>
+            </div>
+            <div class="term-card-large">
+                <div class="term-icon-large"><img src="https://i.ibb.co/jZbsjGXw/image.png" alt="Скорость"></div>
+                <h3>Скорость</h3>
+                <p>Срок изготовления — от 1 календарного дня.</p>
+            </div>
+            <div class="term-card-large">
+                <div class="term-icon-large"><img src="https://i.ibb.co/5htpCKMq/image.png" alt="Поддержка"></div>
+                <h3>Поддержка 24/7</h3>
+                <p>Информация о ходе заказа доступна в любое время.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- 6. НАМ ДОВЕРЯЮТ -->
+<section>
+    <div class="container">
+        <h2 data-aos="fade-up">Нам доверяют свою упаковку</h2>
+        <div class="clients-grid" data-aos="fade-up">
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/JRpy4Mgt/image.png" alt="Медовик"></div><div class="client-name">Медовик</div><div class="client-desc">сеть ресторанов, г. Казань — 4 филиала</div></div>
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/FbytHXtW/ECLAIR.png" alt="Eclair"></div><div class="client-name">Eclair</div><div class="client-desc">сеть ресторанов, г. Казань — 4 филиала</div></div>
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/K1fN7hW/image.png" alt="Ватрушка"></div><div class="client-name">Ватрушка</div><div class="client-desc">сеть ресторанов, г. Челябинск — 4 филиала</div></div>
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/Wv67C4jj/image.png" alt="PionFlo"></div><div class="client-name">PionFlo</div><div class="client-desc">сеть цветочных салонов, г. Казань/Ижевск — 8 филиалов</div></div>
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/GQH15tp9/ppcake.png" alt="PP Cake"></div><div class="client-name">PP Cake</div><div class="client-desc">ресторан правильного питания, г. Москва</div></div>
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/dwFNRKP7/image.png" alt="НБС"></div><div class="client-name">НБС</div><div class="client-desc">Национальный Банк Сбережений, г. Иваново</div></div>
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/7t4Xp61v/image.png" alt="Зеленая гречка"></div><div class="client-name">Зеленая гречка</div><div class="client-desc">сеть ресторанов, г. Казань — 2 филиала</div></div>
+            <div class="client-card"><div class="client-logo"><img src="https://i.ibb.co/RTfnyQm5/image.png" alt="Begin Cafe"></div><div class="client-name">BeginCafe</div><div class="client-desc">сеть ресторанов, г. Казань — 3 филиала</div></div>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- 7. СЛОГАН, ПРИЗЫВ И АКЦИЯ -->
+<section>
+    <div class="container">
+        <div class="slogan-block" data-aos="fade-up">
+            <div class="slogan-heart">💜</div>
+            <div class="slogan-title">Всё будет <span>фиолетово</span><br>и элегантно</div>
+            <div class="slogan-start">Начнём?</div>
+            <div class="promo-block">
+                <div class="promo-text">Для всех участников франшизы ВанЛав даем скидку 15%</div>
+                <div class="promo-date">Акция действует до 19.04.2026</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 8. КОНТАКТЫ -->
+<section id="contact">
+    <div class="container" style="text-align: center;">
+        <div class="qr-grid" data-aos="fade-up">
+            <div class="qr-card">
+                <a href="https://t.me/today_print" target="_blank" rel="noopener noreferrer" class="qr-code-img">
+                    <img src="https://i.ibb.co/sdnyC5Lm/qr.png" alt="QR-код Telegram">
+                </a>
+                <p style="font-weight: 600; margin-bottom: 8px;">Telegram-канал</p>
+                <a href="https://t.me/today_print" target="_blank" style="color: #9B5FC6; text-decoration: none;">@today_print</a>
+            </div>
+            <div class="qr-card">
+                <a href="https://max.ru/u/f9LHodD0cOLYJ6WUEamSep5265dhmCnzgf6OiFZzylhp-3bd9MML-H3uw7Y" target="_blank" rel="noopener noreferrer" class="qr-code-img">
+                    <img src="https://i.ibb.co/Y4hFc8fG/image.png" alt="QR-код Max">
+                </a>
+                <p style="font-weight: 600; margin-bottom: 8px;">Max</p>
+                <a href="https://max.ru/u/f9LHodD0cOLYJ6WUEamSep5265dhmCnzgf6OiFZzylhp-3bd9MML-H3uw7Y" target="_blank" style="color: #9B5FC6; text-decoration: none; font-size: 0.75rem;">Ссылка на профиль</a>
+            </div>
+        </div>
+        <div>
+            <p style="color: #5A6270;">Или напишите нам на почту: <a href="mailto:t0day.print@yandex.ru" style="color: #9B5FC6;">t0day.print@yandex.ru</a></p>
+            <p style="color: #5A6270; margin-top: 8px;">Телефон: <a href="tel:+79061151877" style="color: #9B5FC6;">+7 906 115 1877</a></p>
+        </div>
+    </div>
+</section>
+
+<!-- 9. ЮР ИНФОРМАЦИЯ -->
+<footer>
+    <div class="container">
+        <p>© 2026 — TodayPrint. Готовы стать частью фиолетового мира ВанЛав</p>
+        <p style="font-size: 0.7rem; margin-top: 8px;">Данное предложение не является офертой</p>
+        <div class="legal-info">
+            <p>ИП Исхаков Олег Сатурнович</p>
+            <p>ИНН 163301075817 | ОГРНИП 322169000164841</p>
+            <p>Адрес: г. Казань, ул. Товарищеская, д. 27, офис А31</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init({ duration: 800, once: true, offset: 60 });
+
+    // === ЛАЙТБОКС ===
+    function initLightbox(galleryName, items) {
+        let currentIndex = 0;
+        const lightbox = document.getElementById(`lightbox-${galleryName}`);
+        if (!lightbox) return;
+        const imgElement = lightbox.querySelector('.lightbox-img');
+        const prevBtn = lightbox.querySelector('.lightbox-prev');
+        const nextBtn = lightbox.querySelector('.lightbox-next');
+        const closeBtn = lightbox.querySelector('.lightbox-close');
+
+        function updateImage() {
+            const imgData = items[currentIndex];
+            if (imgData && imgData.src) {
+                imgElement.src = imgData.src;
+                imgElement.alt = imgData.alt || '';
+                imgElement.style.display = 'block';
+            }
+        }
+
+        function openLightbox(index) {
+            if (index < 0 || index >= items.length) return;
+            currentIndex = index;
+            updateImage();
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() { lightbox.classList.remove('active'); }
+        function nextImage() { if (items.length) { currentIndex = (currentIndex + 1) % items.length; updateImage(); } }
+        function prevImage() { if (items.length) { currentIndex = (currentIndex - 1 + items.length) % items.length; updateImage(); } }
+
+        items.forEach((_, idx) => {
+            const selector = `[data-gallery="${galleryName}"][data-index="${idx}"]`;
+            const el = document.querySelector(selector);
+            if (el) {
+                const newEl = el.cloneNode(true);
+                el.parentNode.replaceChild(newEl, el);
+                newEl.addEventListener('click', (e) => { e.stopPropagation(); openLightbox(idx); });
+            }
+        });
+
+        if (prevBtn) { const newPrev = prevBtn.cloneNode(true); prevBtn.parentNode.replaceChild(newPrev, prevBtn); newPrev.addEventListener('click', prevImage); }
+        if (nextBtn) { const newNext = nextBtn.cloneNode(true); nextBtn.parentNode.replaceChild(newNext, nextBtn); newNext.addEventListener('click', nextImage); }
+        if (closeBtn) { const newClose = closeBtn.cloneNode(true); closeBtn.parentNode.replaceChild(newClose, closeBtn); newClose.addEventListener('click', closeLightbox); }
+        if (lightbox) { const newLightbox = lightbox.cloneNode(true); lightbox.parentNode.replaceChild(newLightbox, lightbox); newLightbox.addEventListener('click', (e) => { if (e.target === newLightbox) closeLightbox(); }); }
+        
+        document.addEventListener('keydown', (e) => {
+            if (!document.querySelector('.lightbox.active')) return;
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'Escape') closeLightbox();
+        });
+    }
+
+    // ДАННЫЕ ДЛЯ ГАЛЕРЕЙ
+    const successItems = [
+        { src: 'https://i.ibb.co/4ZHbmQCB/2.jpg', alt: 'Белая лента + фиолетовое нанесение' },
+        { src: 'https://i.ibb.co/mFJ1FxGJ/9.jpg', alt: 'Фиолетовая лента + белое нанесение' },
+        { src: 'https://i.ibb.co/NGrM2W7/10.jpg', alt: 'Дополнительное фото 1' },
+        { src: 'https://i.ibb.co/XfwJ3XjY/11.jpg', alt: 'Дополнительное фото 2' }
+    ];
+    const productsItems = [
+        { src: 'https://i.ibb.co/CpYqnHZc/3.jpg', alt: '3D-стикеры' },
+        { src: 'https://i.ibb.co/8nkh98qk/image.jpg', alt: 'Прозрачные наклейки' },
+        { src: 'https://i.ibb.co/mVvr1d75/image.jpg', alt: 'Цветные наклейки' }
+    ];
+
+    function addLightbox(galleryName) {
+        if (document.getElementById(`lightbox-${galleryName}`)) return;
+        const div = document.createElement('div');
+        div.className = 'lightbox';
+        div.id = `lightbox-${galleryName}`;
+        div.innerHTML = `<div class="lightbox-content"><button class="lightbox-close">✕</button><button class="lightbox-prev">‹</button><button class="lightbox-next">›</button><img class="lightbox-img" src="" alt=""></div>`;
+        document.body.appendChild(div);
+    }
+
+    addLightbox('success');
+    addLightbox('products');
+    initLightbox('success', successItems);
+    initLightbox('products', productsItems);
+</script>
 </body>
 </html>
